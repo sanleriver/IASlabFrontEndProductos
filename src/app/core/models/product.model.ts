@@ -3,4 +3,5 @@ export interface ProductModel {
   typeOfProduct: number;
   name:          string;
   price:         number;
+  discount?:     number;
 }

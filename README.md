@@ -25,3 +25,29 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+########## Requerimientos #############
+1. consumir el servicio "DiscountService" con el metodo "getAllDiscount" para obtener si el tipo de producto seleccionado por el usuario tiene descuento.
+
+Si dicho producto tiene descuento, se deberá de colocar un campo bloqueado en el formulario que muestre el valor, además, se deberá guardar dicha información y mostrarla en la tabla con su porcentaje de descuento y el valor total que quedaría al aplicarle el descuento.
+	
+si dicho producto no tiene descuento, el campo no deberá de aparecer
+### conclusión: 
+datos nuesvo en el form: discount value = number - discount apply (marcar si tiene, desmarcar si no tiene) - (ambos campos bloqueados)
+  datos nuevos en la tabla: discount - total value.
+(cómo es posible que estos valores vayan a quedar vacios por que el tipo de producto no tiene descuento, se deberá de dejar los valores con un "-" en la tabla.
+
+#### ayudas:
+
+	consumir el servicio cuando se crea el componente "producto.component.ts" y cada vez que cambie  el tipo de producto(utilizando un "(onChange)" o el "changeValue" del reactiveForm), se deberá revisar si el producto tiene descuento en la lista consultada.
+
+  para mostar y no mostrar un campo, utilizar la directiva *ngIf=""
+
+  para asignar valores a un campo del formulario se realiza con la siguiente sintaxis: 
+    si el formControlName es por ejemplo "discountApply"
+    this.form.get('discountApply').setValue(true); //tomando true cómo el tipo de dato de discountApply
+
+
+2. En el archivo "products.component.html" cambiar el "select" de la linea 14, para que las opciones mostradas sean a través del servicio de categorias (category-service)
+
