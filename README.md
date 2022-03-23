@@ -26,8 +26,8 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
+#### Requerimientos
 
-########## Requerimientos #############
 1. consumir el servicio "DiscountService" con el metodo "getAllDiscount" para obtener si el tipo de producto seleccionado por el usuario tiene descuento.
 
 Si dicho producto tiene descuento, se deberá de colocar un campo bloqueado en el formulario que muestre el valor, además, se deberá guardar dicha información y mostrarla en la tabla con su porcentaje de descuento y el valor total que quedaría al aplicarle el descuento.
@@ -40,11 +40,11 @@ datos nuesvo en el form: discount value = number - discount apply (marcar si tie
 
 #### ayudas:
 
-	consumir el servicio cuando se crea el componente "producto.component.ts" y cada vez que cambie  el tipo de producto(utilizando un "(onChange)" o el "changeValue" del reactiveForm), se deberá revisar si el producto tiene descuento en la lista consultada.
+consumir el servicio cuando se crea el componente "producto.component.ts" y cada vez que cambie  el tipo de producto(utilizando un "(onChange)" o el "changeValue" del reactiveForm), se deberá revisar si el producto tiene descuento en la lista consultada.
 
-  para mostar y no mostrar un campo, utilizar la directiva *ngIf=""
+para mostar y no mostrar un campo, utilizar la directiva *ngIf=""
 
-  para asignar valores a un campo del formulario se realiza con la siguiente sintaxis: 
+para asignar valores a un campo del formulario se realiza con la siguiente sintaxis: 
     si el formControlName es por ejemplo "discountApply"
     this.form.get('discountApply').setValue(true); //tomando true cómo el tipo de dato de discountApply
 
