@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "actividad-dos-angular"
+    }
+  },
+  "defaultProject": "actividad-dos-angular",
+  "cli": {
+    "analytics": false
+  }
 }
