@@ -36,8 +36,8 @@ export class ProductComponent implements OnInit {
       typeOfProduct: [undefined, [Validators.required]],
       name: ['', [Validators.required]],
       price: [0, [Validators.required]],
-      discount: [{value: 0, disabled: true}],
-      discountApply: [{value: false, disabled: true}]
+      discount: [0],
+      discountApply: [false]
     });
   }
 
