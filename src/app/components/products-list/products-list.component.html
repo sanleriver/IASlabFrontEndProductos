@@ -7,6 +7,8 @@
         <th scope="col">Type of product</th>
         <th scope="col">Name</th>
         <th scope="col">Price</th>
+        <th scope="col">Discount</th>
+        <th scope="col">Total value</th>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +17,10 @@
         <td>{{ transformType(product.typeOfProduct) }}</td>
         <td>{{ product.name }}</td>
         <td>{{ product.price }}</td>
+        <td *ngIf="product.discountApply">{{ product.discount }}</td>
+        <td *ngIf="!product.discountApply">-</td>
+        <td *ngIf="product.discountApply">{{ calculateDiscount(product.price, product.discount)}}</td>
+        <td *ngIf="!product.discountApply">-</td>
       </tr>
     </tbody>
   </table>

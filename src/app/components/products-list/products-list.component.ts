@@ -16,6 +16,7 @@ export class ProductsListComponent implements OnInit {
   captionText = 'List of products';
   listOfProducts: Array<ProductModel> = [];
   listOfCategories: CategoryModel[] = [];
+  totalValue: number;
 
   constructor(private readonly productService: ProductService,
               private readonly categoryService: CategoryService) { }
@@ -60,8 +61,13 @@ export class ProductsListComponent implements OnInit {
   }
 
   transformType(typeId: number): string | number {
-    const categoryForChange = this.listOfCategories.find((category: CategoryModel) => category.id === typeId);
+    const categoryForChange = this.listOfCategories.find((category: CategoryModel) => category.id == typeId);
     return categoryForChange ? categoryForChange.name : typeId;
+  }
+
+  calculateDiscount(price: number, discount: number): number{
+    this.totalValue = price - (price * (discount / 100));
+    return this.totalValue;
   }
 
   trackByItems(index: number, item: ProductModel): number {
