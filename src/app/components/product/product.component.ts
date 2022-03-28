@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { CategoryModel } from 'src/app/core/models/categories.model';
 import { DiscountModel } from 'src/app/core/models/discount.model';
 import { ProductModel } from 'src/app/core/models/product.model';
@@ -12,10 +13,11 @@ import { ProductService } from 'src/app/shared/services/product-service/product.
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnDestroy {
   form: FormGroup;
   listOfDiscounts: DiscountModel[] = [];
   listOfCategories: CategoryModel[] = [];
+  suscribe$: Subscription;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -28,6 +30,7 @@ export class ProductComponent implements OnInit {
     this.createForm();
     this.getAllCategories();
     this.getAllDiscounts();
+    this.listenerFieldTypeOfProduct();
   }
 
   createForm(): void {
@@ -36,8 +39,8 @@ export class ProductComponent implements OnInit {
       typeOfProduct: [undefined, [Validators.required]],
       name: ['', [Validators.required]],
       price: [0, [Validators.required]],
-      discount: [{value: 0, disabled: true}],
-      discountApply: [{value: false, disabled: true}]
+      discount: [0],
+      discountApply: [false]
     });
   }
 
@@ -76,11 +79,28 @@ export class ProductComponent implements OnInit {
   }
 
   validateDiscount(): void{
+    // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.listOfDiscounts.length; i++){
       if(this.form.get('typeOfProduct').value == this.listOfDiscounts[i].idProduct){
         this.form.get('discount').setValue(this.listOfDiscounts[i].value);
         this.form.get('discountApply').setValue(this.listOfDiscounts[i].discountApply);
       }
     }
+  }
+
+  onChangeTypeOfProduct(): void{
+    console.log(this.form.get('typeOfProduct').value);
+  }
+
+  listenerFieldTypeOfProduct(): void{
+    this.suscribe$ = this.form.get('typeOfProduct').valueChanges.subscribe(
+      (typeOfProduct: string) => {
+        this.validateDiscount();
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.suscribe$.unsubscribe();
   }
 }

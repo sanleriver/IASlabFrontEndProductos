@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col" *ngFor="let item of characters">
+    <div class="card-group">
+      
+        <div class="card text-white bg-dark mb-3" style="width: 22rem;">
+          <img src="{{item.image}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <p class="card-text">Species: {{item.species}}</p>
+            <p class="card-text">Status: {{item.status}}</p>
+            <p class="card-text">Location: {{item.location.name}}</p>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

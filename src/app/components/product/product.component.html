@@ -11,7 +11,7 @@
       </div>
       <div class="form-group">
         Type of product
-        <select formControlName="typeOfProduct" class="form-select" aria-label="Default select example" (ngModelChange)="validateDiscount()">
+        <select formControlName="typeOfProduct" class="form-select" aria-label="Default select example">
           <option *ngFor="let item of listOfCategories" value={{item.id}}>{{item.name}}</option>
         </select>
       </div>
@@ -32,7 +32,7 @@
           name="price"
           id="price">
       </div>
-      <div class="form-group" *ngIf="form.get('discountApply').value">
+      <div class="form-group" *ngIf="!!form.get('discountApply').value">
         Discount
         <input
           formControlName="discount"
@@ -40,11 +40,11 @@
           class="form-control text-center"
           name="discount"
           id="discount"
-          disabled>
+          [attr.disabled]="true">
       </div>
       <div class="form-group">
         <div class="form-check">
-          <input class="form-check-input" formControlName="discountApply" type="checkbox" value="" id="flexCheckDefault" disabled>
+          <input class="form-check-input" formControlName="discountApply" type="checkbox" value="" id="flexCheckDefault" [attr.disabled]="true">
           <label class="form-check-label" for="flexCheckDefault">
             discount apply?
           </label>
